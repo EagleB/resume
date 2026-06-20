@@ -1,6 +1,7 @@
 // Mobile nav toggle
 const navToggle = document.getElementById('nav-toggle');
 const nav = document.getElementById('nav');
+const siteHeader = document.getElementById('header');
 
 navToggle.addEventListener('click', () => {
   const isOpen = nav.classList.toggle('open');
@@ -11,6 +12,24 @@ nav.querySelectorAll('.nav-link').forEach((link) => {
   link.addEventListener('click', () => {
     nav.classList.remove('open');
     navToggle.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// Anchor scrolling that accounts for the sticky header's real, current height
+// (CSS scroll-margin-top alone wasn't reliable across browsers/zoom levels).
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    const targetId = link.getAttribute('href').slice(1);
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+
+    const headerOffset = siteHeader.offsetHeight + 16;
+    const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+    const scrollTarget = Math.max(0, targetTop - headerOffset);
+
+    window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
   });
 });
 
