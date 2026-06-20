@@ -131,7 +131,7 @@ a {
 /* Hero */
 .hero {
   position: relative;
-  padding: 8rem 6vw 6rem;
+  padding: 3rem 6vw 6rem;
   overflow: hidden;
 }
 
@@ -388,7 +388,7 @@ a {
   }
 
   .hero {
-    padding: 6rem 6vw 4rem;
+    padding: 2.5rem 6vw 4rem;
   }
 
   .glass-card {
