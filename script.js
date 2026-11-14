@@ -40,7 +40,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
     const scrollTarget = Math.max(0, targetTop - headerOffset);
 
-    window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
+    window.scrollTo({ top: scrollTarget, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   });
 });
 
