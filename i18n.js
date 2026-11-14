@@ -11,6 +11,7 @@
     'nav.toggle': 'Apri/chiudi il menu',
     'nav.home': 'Simone Belfiore — home',
     'lang.label': 'Lingua',
+    'theme.toggle': 'Passa al tema chiaro/scuro',
     'rail.label': 'Contatta Simone Belfiore',
     'rail.linkedinAria': 'Profilo LinkedIn',
     'rail.emailAria': 'Invia un’email',
