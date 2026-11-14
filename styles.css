@@ -135,10 +135,103 @@ a {
   scroll-margin-top: 90px;
 }
 
+/* Persistent contact rail — always visible while scrolling.
+   Fixed footprint (no hover expansion) so it can never grow over the
+   CV text; content reserves matching padding below. */
+.contact-rail {
+  position: fixed;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 890;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 68px;
+}
+
+.rail-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 4px;
+  border-radius: 12px;
+  background: rgba(28, 25, 39, 0.85);
+  border: 0.5px solid var(--border);
+  backdrop-filter: blur(8px);
+  color: var(--violet-light);
+  text-decoration: none;
+  text-align: center;
+  transition: border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.rail-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rail-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.rail-label {
+  font-size: 0.62rem;
+  line-height: 1.2;
+}
+
+.rail-link:hover,
+.rail-link:focus-visible {
+  border-color: var(--violet);
+  color: #fff;
+  box-shadow: 0 0 18px rgba(127, 119, 221, 0.35);
+  transform: translateX(2px);
+}
+
+@media (max-width: 900px) {
+  .contact-rail {
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    transform: none;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0;
+    padding: 8px 4vw calc(8px + env(safe-area-inset-bottom));
+    background: rgba(21, 19, 29, 0.92);
+    backdrop-filter: blur(10px);
+    border-top: 0.5px solid var(--border);
+  }
+
+  .rail-link {
+    height: 42px;
+    background: none;
+    border: none;
+    backdrop-filter: none;
+  }
+
+  .rail-link .rail-label {
+    max-width: none;
+    opacity: 1;
+    padding-right: 12px;
+    font-size: 0.82rem;
+  }
+
+  main {
+    padding-bottom: 64px;
+  }
+}
+
 /* Hero */
 .hero {
   position: relative;
   padding: 3rem 6vw 6rem;
+  padding-left: max(6vw, 108px);
   overflow: hidden;
 }
 
@@ -241,6 +334,7 @@ a {
 /* Sections */
 .section {
   padding: 5rem 6vw;
+  padding-left: max(6vw, 108px);
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -404,5 +498,13 @@ a {
 
   .section {
     padding: 3.5rem 6vw;
+  }
+}
+
+/* Below 900px the rail becomes a bottom bar, so no left gutter is needed */
+@media (max-width: 900px) {
+  .hero,
+  .section {
+    padding-left: 6vw;
   }
 }

@@ -15,6 +15,17 @@ nav.querySelectorAll('.nav-link').forEach((link) => {
   });
 });
 
+// Email address is kept out of the HTML source (and stored reversed here)
+// so harvesting bots scanning for mailto:/plain addresses don't pick it up.
+document.querySelectorAll('.email-link').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const user = '80enomiseroifleb'.split('').reverse().join('');
+    const domain = 'moc.liamg'.split('').reverse().join('');
+    window.location.href = 'mailto:' + user + '@' + domain;
+  });
+});
+
 // Anchor scrolling that accounts for the sticky header's real, current height
 // (CSS scroll-margin-top alone wasn't reliable across browsers/zoom levels).
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
